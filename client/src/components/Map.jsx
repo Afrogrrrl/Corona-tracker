@@ -14,18 +14,24 @@ const useStyles = makeStyles({
     scroll: 'hidden',
   },
   mapContainer: {
-    paddingTop: '3vh',
+    paddingTop: '10vh',
     textAlign: 'center',
     height: '100vh',
-    // border: '1px solid #fff',
-    // position: absolute,
-    // left: '33.3333%',
-    // width: '66.6666%',
-    // top: 0,
-    // bottom: 0,
+    borderLeft: '1px solid #ffff',
+    position: 'absolute',
+    left: '33.3333%',
+    width: '66.6666%',
+    top: 0,
+    bottom: 0,
   },
   mapSidebar: {
     width: '33.3333%',
+  },
+  mapPadding: {
+    padding: '20px',
+    webkitBoxSizing: 'border - box',
+    mozBoxSizing: 'border - box',
+    boxSizing: 'border - box',
   },
 });
 
@@ -56,16 +62,16 @@ function Map() {
   }, [map]);
 
   return (
-    <div className={classes.mapContainer}>
-      <h4>Check out the Map!</h4>
-      <h4>...COMING SOON...</h4>
-      <div className={classes.mapSidebar}></div>
-      <div
-        ref={el => {
-          mapContainer.current = el;
-        }}
-        className={classes.root}
-      />
+    <div>
+      <div className={classes.mapSidebar} />
+      <div className={classes.mapContainer}>
+        <div
+          ref={el => {
+            mapContainer.current = el;
+          }}
+          className={classes.root}
+        />
+      </div>
     </div>
   );
 }
