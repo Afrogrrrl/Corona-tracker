@@ -12,11 +12,19 @@ const useStyles = makeStyles({
     height: 'calc(100vh - 80px)',
     position: 'absolute',
     scroll: 'hidden',
+
+    body: {
+      background: '#404040',
+      color: '#f8f8f8',
+      margin: '0',
+      padding: '0',
+      webkitFontSmoothing: 'antialiased',
+    },
   },
   mapContainer: {
-    paddingTop: '10vh',
-    textAlign: 'center',
-    height: '100vh',
+    // paddingTop: '10vh',
+    // textAlign: 'center',
+    // height: '100vh',
     borderLeft: '1px solid #ffff',
     position: 'absolute',
     left: '33.3333%',
@@ -44,7 +52,7 @@ function Map() {
   useEffect(() => {
     mapboxgl.accessToken = mapboxToken;
 
-    const initializeMap = () => {
+    const initializeMap = ({ setMap, mapContainer }) => {
       const initMap = new mapboxgl.Map({
         container: mapContainer.current,
         style: 'mapbox://styles/mapbox/dark-v9', // stylesheet location
@@ -58,20 +66,18 @@ function Map() {
       });
     };
 
-    if (!map) initializeMap();
+    if (!map) initializeMap({ setMap, mapContainer });
   }, [map]);
 
   return (
     <div>
-      <div className={classes.mapSidebar} />
-      <div className={classes.mapContainer}>
-        <div
-          ref={el => {
-            mapContainer.current = el;
-          }}
-          className={classes.root}
-        />
-      </div>
+      <div className={(classes.mapSidebar, classes.mapPadding)}>Listing</div>
+      <div
+        ref={el => {
+          mapContainer.current = el;
+        }}
+        className={(classes.mapContainer, classes.mapPadding)}
+      ></div>
     </div>
   );
 }
